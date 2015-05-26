@@ -1,0 +1,33 @@
+import org.teachingextensions.logo.Tortoise;
+
+public class SlaveTortoise {
+	public static void main(String[] args) {
+
+		Tortoise.show();
+		drawSquare(50);
+		drawTriangle(200);
+		int turn = 100;
+		for (int i = 0; i < turn; i++) {
+Tortoise.move(2);
+Tortoise.turn(360.0/turn);
+		}
+	}
+
+	private static void drawTriangle(int size) {
+		for (int i = 0; i < 3; i++) {
+
+			Tortoise.move(size);
+			Tortoise.turn(360 / 3);
+		}
+	}
+
+	private static void drawSquare(int size) {
+		for (int i = 0; i < 4; i++) {
+
+			Tortoise.move(size);
+			Tortoise.turn(90);
+
+		}
+	}
+
+}

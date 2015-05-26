@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Runtime"/>
+<fullyQualifiedTypeName name="javax.swing.text.StyledEditorKit.ForegroundAction"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="java.awt.Robot"/>
+<fullyQualifiedTypeName name="java.applet.AudioClip"/>
+<fullyQualifiedTypeName name="javax.swing.JApplet"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="com.sun.codemodel.internal.JOp"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ"/>
+<fullyQualifiedTypeName name="sun.tools.tree.IfStatement"/>
+<fullyQualifiedTypeName name="java.awt.Component"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.awt.Frame"/>
+<fullyQualifiedTypeName name="java.awt.GridLayout"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="java.awt.image.FilteredImageSource"/>
+<fullyQualifiedTypeName name="java.awt.image.CropImageFilter"/>
+<fullyQualifiedTypeName name="org.teachingextensions.logo.Tortoise"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+</qualifiedTypeNameHistroy>

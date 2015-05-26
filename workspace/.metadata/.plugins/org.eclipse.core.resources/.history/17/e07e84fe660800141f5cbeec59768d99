@@ -1,0 +1,37 @@
+import java.awt.Color;
+
+import org.teachingextensions.logo.Colors.Greens;
+import org.teachingextensions.logo.Tortoise;
+
+public class Houses {
+	public static void main(String[] args) {
+
+		Tortoise.setX(100);
+		Tortoise.setY(300);
+		drawHouse_step3(100);
+		drawHouse_step5("small");
+		chooseColor();
+	}
+
+	private static void chooseColor(Color color) {
+		
+		
+	}
+
+	private static void drawHouse_step5(String height) {
+		if (height.equals("small")) {
+			drawHouse_step3(60);
+		}
+	}
+
+	private static void drawHouse_step3(int height) {
+		Tortoise.move(height);
+		Tortoise.turn(90);
+		Tortoise.move(50);
+		Tortoise.turn(90);
+		Tortoise.move(height);
+		Tortoise.setAngle(90);
+		Tortoise.move(50);
+		Tortoise.setAngle(0);
+	}
+}

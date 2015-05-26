@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;ExtremeDuelingButtons.java&apos; to &apos;ExtremeDuellingButtons.java&apos;&#x0A;- Original project: &apos;JoeyLevel1&apos;&#x0A;- Original element: &apos;ExtremeDuelingButtons.java&apos;&#x0A;- Renamed element: &apos;ExtremeDuellingButtons.java&apos;" description="Rename compilation unit &apos;ExtremeDuelingButtons.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{ExtremeDuelingButtons.java" name="ExtremeDuellingButtons.java" references="false" stamp="1427933774366" version="1.0"/>
+</session>

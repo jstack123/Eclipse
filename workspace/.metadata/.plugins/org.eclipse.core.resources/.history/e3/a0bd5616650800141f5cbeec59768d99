@@ -1,0 +1,14 @@
+import org.teachingextensions.logo.Tortoise;
+
+public class Houses {
+	public static void main(String[] args) {
+
+		Tortoise.setX(100);
+		Tortoise.setY(300);
+		moveHeight(200);
+	}
+
+	private static void moveHeight(int height) {
+		Tortoise.move(height);
+	}
+}

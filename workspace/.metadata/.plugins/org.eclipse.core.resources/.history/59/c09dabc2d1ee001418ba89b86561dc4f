@@ -1,0 +1,13 @@
+public class Bear {
+int numberOfFamilyMembers;
+String favoritePlace;
+void swim() {
+}
+void eat() {
+}	
+public static void main(String[] args) {
+	
+Bear bear= new Bear();
+
+}
+}

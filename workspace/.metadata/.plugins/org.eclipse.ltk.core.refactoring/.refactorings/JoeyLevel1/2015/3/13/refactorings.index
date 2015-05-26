@@ -1,0 +1,3 @@
+1427330981843	Extract method 'drawHouse'
+1427333872510	Extract method 'drawFlatRoof'
+1427333909041	Extract method 'drawPointyRoof'

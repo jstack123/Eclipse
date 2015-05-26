@@ -1,0 +1,25 @@
+public class Bear {
+	int numberOfFamilyMembers;
+	String favoritePlace;
+
+	Bear(int familyMembers, String place) {
+		numberOfFamilyMembers = familyMembers;
+		favoritePlace = place;
+	}
+
+	void swim() {
+		System.out.println("I am swimming!");
+	}
+
+	void eat() {
+		System.out.println("I am eating with my " + numberOfFamilyMembers
+				+ " family members!");
+	}
+
+	public static void main(String[] args) {
+
+		Bear bear = new Bear(6, "desert");
+		bear.swim();
+		bear.eat();
+	}
+}
