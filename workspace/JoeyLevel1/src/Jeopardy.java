@@ -116,7 +116,9 @@ public class Jeopardy implements ActionListener {
 			this.askQuestion("Who is the best person in the world?", "Joey",
 					1000);
 		} else if (buttonPressed == secondButton) {
-			this.askQuestion(question, correctAnswer, prizeMoney);
+
+			this.askQuestion("What is the color of the sky",
+					"Brown", 400);
 		}
 		// Call the askQuestion() method
 
@@ -134,12 +136,18 @@ public class Jeopardy implements ActionListener {
 	private void askQuestion(String question, String correctAnswer,
 			int prizeMoney) {
 		// Remove this temporary message
-		JOptionPane.showMessageDialog(null,
-				"this is where the question will be asked");
+		
 		// Use a pop up to ask the user the question
-
+		String answer = JOptionPane.showInputDialog(question);
 		// If the answer is correct
-
+		if (answer.equalsIgnoreCase(correctAnswer)) {
+			score += prizeMoney;
+			JOptionPane.showMessageDialog(null, "YOU WERE CORRECT!!! You earned $" + prizeMoney);
+		} else {
+			score -= prizeMoney;
+			JOptionPane.showMessageDialog(null, "HAHAHA YOU FAILED!!! You lost $" + prizeMoney);
+		}
+		updateScore();
 		// Increase the score by the prizeMoney
 
 		// Call the updateScore() method
