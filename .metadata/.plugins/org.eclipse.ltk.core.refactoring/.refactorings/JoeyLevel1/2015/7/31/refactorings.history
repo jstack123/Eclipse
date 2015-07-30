@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Jeopardy-theme-song.mp3&apos; to &apos;Bill_Gates_July_2014.jpg&apos;&#x0A;- Original project: &apos;JoeyLevel1&apos;&#x0A;- Destination element: &apos;Bill_Gates_July_2014.jpg&apos;&#x0A;- Original element: &apos;Jeopardy-theme-song.mp3&apos;&#x0A;- Update references to refactored element" description="Move file" element1="src/IMG/Jeopardy-theme-song.mp3" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1438218089801" target="src/Bill_Gates_July_2014.jpg" units="0" version="1.0"/>
+</session>

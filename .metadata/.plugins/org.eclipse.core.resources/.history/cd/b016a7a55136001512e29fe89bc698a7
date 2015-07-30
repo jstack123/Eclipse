@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton, fifthButton;
+	private JButton thirdButton, fourthButton;
 
 	private JPanel quizPanel;
 	int score = 0;
@@ -56,7 +56,7 @@ public class Jeopardy implements ActionListener {
 		frame.add(quizPanel);
 		// 6. Use the firstButton variable to hold a button using the
 		// createButton method
-		firstButton = createButton("$200");
+		firstButton = createButton("$1000");
 		// 7. Add the firstButton to the quizPanel
 		quizPanel.add(firstButton);
 		// 8. Write the code inside the createButton() method below. Check that
@@ -68,21 +68,12 @@ public class Jeopardy implements ActionListener {
 		secondButton = createButton("$400");
 		// 10. Add the secondButton to the quizPanel
 		quizPanel.add(secondButton);
-
-		thirdButton = createButton("$600");
+		
+		thirdButton = createButton("$200");
 		quizPanel.add(thirdButton);
-
-		fourthButton = createButton("$800");
-		quizPanel.add(fourthButton);
-
-		fifthButton = createButton("$1000");
-		quizPanel.add(fifthButton);
 		// 11. Add an action listeners to the buttons (2 lines of code)
 		firstButton.addActionListener(this);
 		secondButton.addActionListener(this);
-		thirdButton.addActionListener(this);
-		fourthButton.addActionListener(this);
-		fifthButton.addActionListener(this);
 		// 12. Fill in the actionPerformed() method below
 
 		frame.pack();
@@ -115,31 +106,22 @@ public class Jeopardy implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		// Remove this temporary message:
+		JOptionPane
+				.showMessageDialog(null,
+						"pressed " + ((JButton) arg0.getSource()).getText()
+								+ " button");
 
 		// Use the method that plays the jeopardy theme music.
-		this.playJeopardyTheme();
+
 		JButton buttonPressed = (JButton) arg0.getSource();
 		// If the buttonPressed was the firstButton
-		if (buttonPressed == fifthButton) {
+		if (buttonPressed == firstButton) {
 			this.askQuestion("Who is the best person in the world?", "Joey",
 					1000);
 		} else if (buttonPressed == secondButton) {
 
-			this.askQuestion(
-					"What is the color of the sky, list three different colors?",
-					"Blue, Gray, White", 400);
-		} else if (buttonPressed == thirdButton) {
-			this.askQuestion(
-					"Which baseball player had the most home runs all time, that didn't take steroids?",
-					"Hank Aaron", 600);
-		} else if (buttonPressed == fourthButton) {
-			this.askQuestion(
-					"Who is considered the best NCAA coach of all time?",
-					"coach K", 800);
-		} else {
-			this.askQuestion(
-					"Who is considered the best guard of all time in the NBA?",
-					"Magic Johnson", 200);
+			this.askQuestion("What is the color of the sky",
+					"Brown", 400);
 		}
 		// Call the askQuestion() method
 
@@ -151,42 +133,22 @@ public class Jeopardy implements ActionListener {
 		// Call the askQuestionRecipe with a harder question
 
 		// Clear the button text (set the button text to nothing)
-		buttonPressed.setText(null);
-		buttonPressed.removeActionListener(this);
-		boolean done = true;
-		if (firstButton.getText() != null) {
-			done = false;
-		} else if (secondButton.getText() != null) {
-			done = false;
-		} else if (thirdButton.getText() != null) {
-			done = false;
-		} else if (fourthButton.getText() != null) {
-			done = false;
-		} else if (fifthButton.getText() != null) {
-			done = false;
-		}
-		if (done) {
-			JOptionPane.showMessageDialog(null, "Congrats! Your score is "
-					+ score + " !");
-			System.exit(0);
-		}
+
 	}
 
 	private void askQuestion(String question, String correctAnswer,
 			int prizeMoney) {
 		// Remove this temporary message
-
+		
 		// Use a pop up to ask the user the question
 		String answer = JOptionPane.showInputDialog(question);
 		// If the answer is correct
 		if (answer.equalsIgnoreCase(correctAnswer)) {
 			score += prizeMoney;
-			JOptionPane.showMessageDialog(null,
-					"YOU WERE CORRECT!!! You earned $" + prizeMoney);
+			JOptionPane.showMessageDialog(null, "YOU WERE CORRECT!!! You earned $" + prizeMoney);
 		} else {
 			score -= prizeMoney;
-			JOptionPane.showMessageDialog(null,
-					"HAHAHA YOU FAILED!!! You lost $" + prizeMoney);
+			JOptionPane.showMessageDialog(null, "HAHAHA YOU FAILED!!! You lost $" + prizeMoney);
 		}
 		updateScore();
 		// Increase the score by the prizeMoney
@@ -209,8 +171,7 @@ public class Jeopardy implements ActionListener {
 		try {
 			AudioInputStream audioInputStream = AudioSystem
 					.getAudioInputStream(new URL(
-					// "http://www.jointheleague.org/sounds/jeopardy.wav"));
-							"http://wavs.unclebubby.com/wav/TV/Misc/jeapordy.wav"));
+							"http://school.wintrisstech.org/sounds/jeopardy.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();

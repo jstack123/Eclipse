@@ -125,24 +125,16 @@ public class Jeopardy implements ActionListener {
 					1000);
 		} else if (buttonPressed == secondButton) {
 
-			this.askQuestion(
-					"What is the color of the sky, list three different colors?",
-					"Blue, Gray, White", 400);
+			this.askQuestion("What is the color of the sky, list three different colors?", "Blue, Gray, White", 400);
 		} else if (buttonPressed == thirdButton) {
-			this.askQuestion(
-					"Which baseball player had the most home runs all time, that didn't take steroids?",
-					"Hank Aaron", 600);
+			 this.askQuestion("Which baseball player had the most home runs all time, that didn't take steroids?", "Hank Aaron", 600);
 		} else if (buttonPressed == fourthButton) {
-			this.askQuestion(
-					"Who is considered the best NCAA coach of all time?",
-					"coach K", 800);
+			 this.askQuestion("Who is considered the best NCAA coach of all time?", "coach K", 800);
 		} else {
-			this.askQuestion(
-					"Who is considered the best guard of all time in the NBA?",
-					"Magic Johnson", 200);
+			 this.askQuestion("Who is considered the best guard of all time in the NBA?", "Magic Johnson", 200);
 		}
 		// Call the askQuestion() method
-
+		
 		// Fill in the askQuestion() method. When you play the game, the score
 		// should change.
 
@@ -153,23 +145,6 @@ public class Jeopardy implements ActionListener {
 		// Clear the button text (set the button text to nothing)
 		buttonPressed.setText(null);
 		buttonPressed.removeActionListener(this);
-		boolean done = true;
-		if (firstButton.getText() != null) {
-			done = false;
-		} else if (secondButton.getText() != null) {
-			done = false;
-		} else if (thirdButton.getText() != null) {
-			done = false;
-		} else if (fourthButton.getText() != null) {
-			done = false;
-		} else if (fifthButton.getText() != null) {
-			done = false;
-		}
-		if (done) {
-			JOptionPane.showMessageDialog(null, "Congrats! Your score is "
-					+ score + " !");
-			System.exit(0);
-		}
 	}
 
 	private void askQuestion(String question, String correctAnswer,
@@ -209,8 +184,8 @@ public class Jeopardy implements ActionListener {
 		try {
 			AudioInputStream audioInputStream = AudioSystem
 					.getAudioInputStream(new URL(
-					// "http://www.jointheleague.org/sounds/jeopardy.wav"));
-							"http://wavs.unclebubby.com/wav/TV/Misc/jeapordy.wav"));
+//							"http://www.jointheleague.org/sounds/jeopardy.wav"));
+			"http://wavs.unclebubby.com/wav/TV/Misc/jeapordy.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();

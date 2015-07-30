@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -153,23 +154,6 @@ public class Jeopardy implements ActionListener {
 		// Clear the button text (set the button text to nothing)
 		buttonPressed.setText(null);
 		buttonPressed.removeActionListener(this);
-		boolean done = true;
-		if (firstButton.getText() != null) {
-			done = false;
-		} else if (secondButton.getText() != null) {
-			done = false;
-		} else if (thirdButton.getText() != null) {
-			done = false;
-		} else if (fourthButton.getText() != null) {
-			done = false;
-		} else if (fifthButton.getText() != null) {
-			done = false;
-		}
-		if (done) {
-			JOptionPane.showMessageDialog(null, "Congrats! Your score is "
-					+ score + " !");
-			System.exit(0);
-		}
 	}
 
 	private void askQuestion(String question, String correctAnswer,
@@ -208,9 +192,7 @@ public class Jeopardy implements ActionListener {
 	public void playJeopardyTheme() {
 		try {
 			AudioInputStream audioInputStream = AudioSystem
-					.getAudioInputStream(new URL(
-					// "http://www.jointheleague.org/sounds/jeopardy.wav"));
-							"http://wavs.unclebubby.com/wav/TV/Misc/jeapordy.wav"));
+					.getAudioInputStream(new FileInputStream("Jeopardy-theme-song.mp3"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();
