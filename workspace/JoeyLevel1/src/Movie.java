@@ -1,7 +1,5 @@
 public class Movie implements Comparable<Movie> {
-	public static void main(String[] args) {
-		// TODO:Movie movie = new Movie("");
-	}
+	
 
 	private String title;
 	private int stars;
