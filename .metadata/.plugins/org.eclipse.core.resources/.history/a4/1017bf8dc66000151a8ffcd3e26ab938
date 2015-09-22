@@ -1,0 +1,44 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+public class SensitiveKeyboard implements KeyListener {
+	JFrame frame = new JFrame();
+
+	public SensitiveKeyboard() {
+		frame.addKeyListener(this);
+		frame.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		SensitiveKeyboard keyboard = new SensitiveKeyboard();
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		try {
+			Runtime.getRuntime().exec("say OUCH!!!");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+
+		}
+	}
+
+}
