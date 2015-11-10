@@ -1,3 +1,4 @@
+
 //Copyright The League of Amazing Programmers, 2015
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,9 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.advanced.AdvancedPlayer;
-
 /* 1. Download the JavaZoom jar from here: http://bit.ly/javazoom
  * 2. Right click your project and add it as an External JAR (Under Java Build Path > Libraries).*/
 
@@ -26,8 +24,7 @@ public class JukeBox {
 		this.songs = songs;
 	}
 
-	public static void main(String[] args) throws IOException,
-			JavaLayerException {
+	public static void main(String[] args) throws IOException, JavaLayerException {
 		JukeBox jukebox = new JukeBox("songs");
 		jukebox.createUI();
 		// 3. Find an mp3 on your computer or on the Internet.
@@ -42,7 +39,6 @@ public class JukeBox {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
-	
 
 	}
 
