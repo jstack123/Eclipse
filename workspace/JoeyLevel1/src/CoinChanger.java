@@ -31,6 +31,10 @@ public class CoinChanger {
 		System.out.println("You have a number of " + numberOfCoins + " coins.");
 	}
 
+	int getCoinDenomination() {
+		return this.coinDenomination;
+	}
+
 	public static void main(String[] args) {
 		CoinChanger coinChanger = new CoinChanger(1, 5);
 		coinChanger.dispenseCoin();
