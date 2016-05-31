@@ -1,13 +1,16 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class TypingTutor implements KeyListener {
 	char currentLetter = generateRandomLetter();
+	static int numberOfCharacters = 0;
 	JFrame frame = new JFrame("Type or Die");
 	JLabel label = new JLabel();
 
@@ -30,7 +33,6 @@ public class TypingTutor implements KeyListener {
 
 	public static void main(String[] args) {
 		TypingTutor tutor = new TypingTutor();
-
 	}
 
 	@Override
@@ -52,6 +54,8 @@ public class TypingTutor implements KeyListener {
 			frame.setForeground(Color.GREEN);
 			label.setBackground(Color.GREEN);
 			label.setForeground(Color.GREEN);
+			numberOfCharacters += 1;
+			showTypingSpeed(numberOfCharacters);
 		} else {
 			frame.setBackground(Color.RED);
 			frame.setForeground(Color.RED);
@@ -65,5 +69,16 @@ public class TypingTutor implements KeyListener {
 		currentLetter = generateRandomLetter();
 		label.setText("" + currentLetter);
 	}
+
+	private void showTypingSpeed(int numberOfCorrectCharactersTyped) {
+		Date timeAtEnd = new Date();
+		long gameDuration = timeAtEnd.getTime() - timeAtStart.getTime();
+		long gameInSeconds = (gameDuration / 1000) % 60;
+		double charactersPerSecond = ((double) numberOfCorrectCharactersTyped / (double) gameInSeconds);
+		int charactersPerMinute = (int) (charactersPerSecond * 60);
+		JOptionPane.showMessageDialog(null, "Your typing speed is " + charactersPerMinute + " characters per minute.");
+	}
+
+	Date timeAtStart = new Date();
 
 }
