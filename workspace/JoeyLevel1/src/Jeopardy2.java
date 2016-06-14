@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 public class Jeopardy2 implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 
 	private JPanel quizPanel;
 	int score = 0;
@@ -37,7 +37,9 @@ public class Jeopardy2 implements ActionListener {
 	int buttonCount = 0;
 
 	public static void main(String[] args) {
-		new Jeopardy2().start();
+
+		Jeopardy2 jeopardy = new Jeopardy2();
+		jeopardy.start();
 	}
 
 	private void start() {
@@ -71,11 +73,18 @@ public class Jeopardy2 implements ActionListener {
 		secondButton = createButton("$400");
 		thirdButton = createButton("$600");
 		fourthButton = createButton("$800");
+		fifthButton = createButton("$1000");
 		// 10. Add the secondButton to the quizPanel
 		quizPanel.add(secondButton);
+		quizPanel.add(thirdButton);
+		quizPanel.add(fourthButton);
+		quizPanel.add(fifthButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 		firstButton.addActionListener(this);
 		secondButton.addActionListener(this);
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
+		fifthButton.addActionListener(this);
 		// 12. Fill in the actionPerformed() method below
 
 		frame.pack();
@@ -116,15 +125,29 @@ public class Jeopardy2 implements ActionListener {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		// If the buttonPressed was the firstButton
 		if (buttonPressed == firstButton) {
+			playJeopardyTheme();
 			askQuestion(
-					"The Super Bowl trophy, or the Lombardi Trophy, is named after this amazing coach in the NFL. Who is this coach",
+					"The Super Bowl trophy, or the Lombardi Trophy, is named after this amazing coach in the NFL. Who is this coach? Remember to capitalize the name.",
 					"Vince Lombardi", 200);
-			firstButton.setText("");
+			firstButton.setText(null);
 		} else if (buttonPressed == secondButton) {
-			askQuestion("Who leads the NBA all time in assists.", "John Stockton", 400);
-			secondButton.setText("");
+			askQuestion("Who leads the NBA all time in assists. Remember to capitalize the name.", "John Stockton",
+					400);
+			secondButton.setText(null);
 		} else if (buttonPressed == thirdButton) {
-			askQuestion("", "", 600);
+			askQuestion("In what country was the first World Cup held? Remember to capitalize the country.", "Uruguay",
+					600);
+			thirdButton.setText(null);
+		} else if (buttonPressed == fourthButton) {
+			askQuestion(
+					"Who are the only two MLB batters to win two triple crowns in a row? Remember to capitalize the name and name the batters by alphabetical order.",
+					"Roger Hornsby and Ted Williams", 800);
+			fourthButton.setText(null);
+		} else if (buttonPressed == fifthButton) {
+			askQuestion(
+					"Who is the only competitor in the olympics to win a medal in three different sports and in the same olympics? Remember to capitalize the name.",
+					"Frank Kugler", 1000);
+			fifthButton.setText(null);
 		}
 
 		// Call the askQuestion() method
