@@ -6,6 +6,5 @@
 	<classpathentry kind="lib" path="lib/mail.jar"/>
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/gridworld.jar"/>
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/TeachingKidsProgramming - unicorn.jar"/>
-	<classpathentry kind="lib" path="/Users/league/Downloads/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
