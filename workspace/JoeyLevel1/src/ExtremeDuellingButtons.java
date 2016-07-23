@@ -45,7 +45,7 @@ public class ExtremeDuellingButtons implements ActionListener {
 	}
 
 	@Override
-	void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
 
 		/* If the buttonPressed was the leftButton.... */

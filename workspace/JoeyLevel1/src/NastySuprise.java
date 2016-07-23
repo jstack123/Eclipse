@@ -31,7 +31,6 @@ public class NastySuprise implements ActionListener {
 		NastySuprise suprise = new NastySuprise();
 		suprise.createUI();
 
-		}
 	}
 
 	private void showPictureFromTheInternet(String imageUrl) {
