@@ -6,6 +6,8 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class SpellingBee {
 	int lines;
 	ArrayList<String> words = new ArrayList<>();
@@ -17,8 +19,22 @@ public class SpellingBee {
 	 * that you need to write code in is the stuffForYouToDo() Method
 	 */
 	public void stuffForYouToDo() {
-		String word = randomWord();
-		Speak(word);
+		for (int i = 0; i < 100; i++) {
+			String word = randomWord();
+			Speak(word);
+			String answer = JOptionPane.showInputDialog(
+					"Spell the word that you hear. If you get it correct, you move on. If you miss it, than your eliminated.");
+			System.out.println(word);
+			if (word.equalsIgnoreCase(answer)) {
+				JOptionPane.showMessageDialog(null, "You are correct! Great Job! Move on!");
+
+			} else {
+				JOptionPane.showMessageDialog(null, "You failed! You are eliminated! Nice tryyyyyy!");
+				break;
+			}
+
+		}
+
 	}
 
 	public String randomWord() {
@@ -34,7 +50,7 @@ public class SpellingBee {
 			LineNumberReader lnr = new LineNumberReader(new FileReader(new File("/usr/share/dict/words")));
 			lnr.skip(Long.MAX_VALUE);// Skip to the end
 			lines = lnr.getLineNumber();// Get last line number
-			speakNoWait(lines + " words loaded");
+			// speakNoWait(lines + " words loaded");
 			System.out.println("Number of words: " + lines);
 			lnr.close();
 			BufferedReader br = new BufferedReader(new FileReader(new File("/usr/share/dict/words")));

@@ -4,8 +4,5 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dczclvlxc/Downloads/league-jars-20160723T185046Z/league-jars/gridworld.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dczclvlxc/Downloads/league-jars-20160723T185046Z/league-jars/Tortoise.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dczclvlxc/Downloads/league-jars-20160723T185046Z/league-jars/javazoom.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
