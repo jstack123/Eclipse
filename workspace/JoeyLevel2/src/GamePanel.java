@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -64,15 +65,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void drawMenuState(Graphics g) {
-
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
 	}
 
 	public void drawGameState(Graphics g) {
-
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
 	}
 
 	public void drawEndState(Graphics g) {
-
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
 	}
 
 	@Override
@@ -112,7 +116,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			currentState++;
+			if(currentState>END_STATE) {
+				currentState=MENU_STATE;
+			}
+		}
 
 	}
 
