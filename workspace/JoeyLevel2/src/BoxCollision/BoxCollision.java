@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 public class BoxCollision {
 	static final int WIDTH = 500;
-	static final int LENGTH = 500;
+	static final int LENGTH = 700;
 	JFrame frame;
 	BoxPanel panel;
 
@@ -12,6 +12,7 @@ public class BoxCollision {
 		frame = new JFrame("BoxCollision");
 		panel = new BoxPanel();
 		setup();
+		panel.startGame();
 	}
 
 	public static void main(String[] args) {
@@ -21,5 +22,6 @@ public class BoxCollision {
 		frame.add(panel);
 		frame.setSize(WIDTH, LENGTH);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 	}
 }
