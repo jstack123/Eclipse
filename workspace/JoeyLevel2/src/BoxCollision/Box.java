@@ -47,11 +47,11 @@ public class Box {
 			speedX = -speedX;
 			System.out.println("the boundary has been hit");
 		}
-		if (y > 700) {
+		if (y > 640) {
 			speedY = -speedY;
 			System.out.println("the boundary has been hit");
 		}
-		if (x < 0) {
+		if (y < 0) {
 			speedY = -speedY;
 			System.out.println("the boundary has been hit");
 		}

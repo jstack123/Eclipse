@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -13,17 +14,18 @@ public class BoxPanel extends JPanel implements ActionListener {
 	int x = 250;
 	int y = 5;
 	Box box;
-
+	Random random;
+	BoxManager manager;
 	public BoxPanel() {
 		timer = new Timer(1000 / 60, this);
-		box = new Box(Color.RED, 50, 50, 70, 70, 5, 5, true);
+		Color color = new Color(random.nextInt(0xFFFFFF));
+		box = new Box(Color.RED, 50, 50, (int) (Math.random() * 500), (int) (Math.random() * 700), 5, 5, true);
+		random = new Random();
+		manager = new BoxManager();
 	}
 
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(x, y, 50, 50);
-		g.setColor(Color.RED);
-		box.draw(g);
+		manager.draw(g);
 	}
 
 	public void startGame() {
