@@ -18,7 +18,7 @@ public class BoxPanel extends JPanel implements ActionListener {
 	BoxManager manager;
 	public BoxPanel() {
 		timer = new Timer(1000 / 60, this);
-		Color color = new Color(random.nextInt(0xFFFFFF));
+		//Color color = new Color(random.nextInt(0xFFFFFF));
 		box = new Box(Color.RED, 50, 50, (int) (Math.random() * 500), (int) (Math.random() * 700), 5, 5, true);
 		random = new Random();
 		manager = new BoxManager();
@@ -36,8 +36,6 @@ public class BoxPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
-		box.update();
-		y++;
-		box.boundaryCheck();
+		manager.update();
 	}
 }

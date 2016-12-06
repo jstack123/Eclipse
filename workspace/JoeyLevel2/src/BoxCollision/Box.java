@@ -31,11 +31,13 @@ public class Box {
 	public void draw(Graphics g) {
 		g.fillRect(x, y, width, height);
 		g.drawRect(x, y, width, height);
+		g.setColor(Color.RED);
 	}
 
 	public void update() {
 		x = x + speedX;
 		y=y+speedY;
+		boundaryCheck();
 	}
 
 	public void boundaryCheck() {
