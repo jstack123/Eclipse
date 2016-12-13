@@ -116,12 +116,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-			currentState++;
-			if(currentState>END_STATE) {
-				currentState=MENU_STATE;
-			}
-		}
+		
 
 	}
 
@@ -129,7 +124,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("hi");
-
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			currentState++;
+			//if(currentState>END_STATE) {
+				//currentState=MENU_STATE;
+			//}
+		}
 	}
 
 	@Override
