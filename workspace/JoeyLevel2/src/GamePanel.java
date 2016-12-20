@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,10 +19,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
 	Font titleFont;
+	Font startAndEndMenu;
 	BBGameObject object = new BBGameObject();
 
 	public GamePanel() {
 		timer = new Timer(1000 / 60, this);
+		titleFont = new Font("Times New Roman", Font.BOLD, 75);
+		startAndEndMenu = new Font("Arial", Font.ITALIC,50);
 	}
 
 	public void startGame() {
@@ -67,11 +71,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void drawMenuState(Graphics g) {
 		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
+		g.setColor(Color.BLUE);
+		g.setFont(titleFont);
+		g.drawString("Joey's Basketball Game", 150, 200);
+		g.setFont(startAndEndMenu);
+		g.drawString("Press ENTER to play.", 225,400);
+		g.drawString("Press SPACE for instructions.", 175, 600);
 	}
 
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
+		//g.drawImage(this.basketballCourtImg, x, y, observer)
+		//work on here
 	}
 
 	public void drawEndState(Graphics g) {
@@ -116,7 +128,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 
 	}
 
@@ -124,11 +135,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("hi");
-		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
-			//if(currentState>END_STATE) {
-				//currentState=MENU_STATE;
-			//}
+		}
+		if (currentState > END_STATE) {
+			currentState = MENU_STATE;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			currentState = MENU_STATE;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			JOptionPane.showMessageDialog(null, "Hello! Welcome to Joey's Basketball Game! In this game you goal is to score as many points as you can in 30 seconds. To shoot, drag your mouse back, let it go, and let it fly. The further you drag your mouse, the more power on the shoot. At the end, see how many points you get! Good luck! Have fun!");
 		}
 	}
 
