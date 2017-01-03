@@ -7,7 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,11 +24,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont;
 	Font startAndEndMenu;
 	BBGameObject object = new BBGameObject();
+	BufferedImage courtBackgroundImg;
+	
 
 	public GamePanel() {
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
 		startAndEndMenu = new Font("Arial", Font.ITALIC,50);
+		try {
+			courtBackgroundImg = ImageIO.read(this.getClass().getResourceAsStream("basketballCourt.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void startGame() {
@@ -35,7 +46,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		repaint();
+		
 		if (currentState == MENU_STATE) {
 			updateMenuState();
 		} else if (currentState == GAME_STATE) {
@@ -43,14 +54,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		} else if (currentState == END_STATE) {
 			updateEndState();
 		}
+		repaint();
 	}
 
 	public void paintComponent(Graphics g) {
-		object.draw(g);
+		//object.draw(g);
+		System.out.println(currentState);
 		if (currentState == MENU_STATE) {
 			drawMenuState(g);
 		} else if (currentState == GAME_STATE) {
 			drawGameState(g);
+			
 		} else if (currentState == END_STATE) {
 			drawEndState(g);
 		}
@@ -81,14 +95,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
-		//g.drawImage(this.basketballCourtImg, x, y, observer)
-		//work on here
+		g.drawImage(courtBackgroundImg, 0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT, null);
+		
+
 	}
 
 	public void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
+		g.setColor(Color.BLACK);
+		g.setFont(titleFont);
+		g.drawString("GAME OVER!!!", 225, 200);
 	}
 
 	@Override

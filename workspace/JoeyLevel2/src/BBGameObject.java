@@ -11,12 +11,7 @@ int width;
 int height;
 public static BufferedImage courtBackgroundImg;
 public BBGameObject() {
-	try {
-		courtBackgroundImg = ImageIO.read(this.getClass().getResourceAsStream("basketballCourt.png"));
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	
 }
 public void update() {
 	y--;
