@@ -23,9 +23,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	int currentState = MENU_STATE;
 	Font titleFont;
 	Font startAndEndMenu;
-	BBGameObject object = new BBGameObject();
-	BufferedImage courtBackgroundImg;
-	
+	public static BufferedImage courtBackgroundImg;
+	public static BufferedImage basketballImg;
+	Ball ball = new Ball(100,200,25,25);
+	ScoreZone zones = new ScoreZone(650, 400, 50, 50, 1);
+	ScoreZone zones2 = new ScoreZone(400,500,50,50,2);
 
 	public GamePanel() {
 		timer = new Timer(1000 / 60, this);
@@ -33,6 +35,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		startAndEndMenu = new Font("Arial", Font.ITALIC,50);
 		try {
 			courtBackgroundImg = ImageIO.read(this.getClass().getResourceAsStream("basketballCourt.png"));
+			basketballImg = ImageIO.read(this.getClass().getResourceAsStream("basketball.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,7 +99,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawImage(courtBackgroundImg, 0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT, null);
-		
+		//g.drawImage(basketballImg, 550, 400, 25, 25, null);
+		ball.draw(g);
+		zones.draw(g);
+		zones2.draw(g);
 
 	}
 
