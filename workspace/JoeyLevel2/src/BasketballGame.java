@@ -1,5 +1,4 @@
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class BasketballGame {
 	static final int WIDTH = 1000;
@@ -23,6 +22,7 @@ public class BasketballGame {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.addKeyListener(game);
 		frame.addMouseListener(game);
+		frame.addMouseMotionListener(game);
 		game.startGame();
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 	}
