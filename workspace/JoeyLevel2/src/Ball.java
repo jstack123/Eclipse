@@ -12,6 +12,14 @@ public class Ball extends BBGameObject {
 		g.drawImage(GamePanel.basketballImg, x, y, width, height, null);
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	public void setX(int x) {
 		this.x = x;
 	}

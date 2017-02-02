@@ -29,15 +29,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage courtBackgroundImg;
 	public static BufferedImage basketballImg;
 	Ball ball = new Ball(100, 200, 25, 25);
+
 	ScoreZone zones = new ScoreZone(700, 375, 50, 50, 1);
 	ScoreZone zones2 = new ScoreZone(675, 500, 50, 50, 2);
 	ScoreZone zones2b = new ScoreZone(675, 250, 50, 50, 2);
 	ScoreZone zones3 = new ScoreZone(535, 375, 50, 50, 3);
-	ScoreZone zones3LeftC = new ScoreZone(800, 100, 50, 50, 3);
-	ScoreZone zones4 = new ScoreZone(350, 400, 50, 50, 4);
-	ScoreZone zones5 = new ScoreZone(250, 400, 50, 50, 5);
+	ScoreZone zones3LeftC = new ScoreZone(900, 25, 50, 50, 3);
+	ScoreZone zones3RightC = new ScoreZone(900, 725, 50, 50, 3);
+	ScoreZone zones3LeftW = new ScoreZone(625, 130, 50, 50, 3);
+	ScoreZone zones3RightW = new ScoreZone(625, 620, 50, 50, 3);
+	ScoreZone zones4 = new ScoreZone(380, 375, 50, 50, 4);
+	ScoreZone zones5 = new ScoreZone(240, 375, 50, 50, 5);
+	ScoreZone zones5Left = new ScoreZone(300, 25, 50, 50, 5);
+	ScoreZone zones5Right = new ScoreZone(300, 725, 50, 50, 5);
 
-	public GamePanel() {
+	public GamePanel()
+
+	{
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
 		startAndEndMenu = new Font("Arial", Font.ITALIC, 50);
@@ -114,8 +122,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		zones2b.draw(g);
 		zones3.draw(g);
 		zones3LeftC.draw(g);
+		zones3RightC.draw(g);
+		zones3LeftW.draw(g);
+		zones3RightW.draw(g);
 		zones4.draw(g);
 		zones5.draw(g);
+		zones5Left.draw(g);
+		zones5Right.draw(g);
 
 	}
 
@@ -196,7 +209,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		// if (ball.getX() > ball.getY() - 100) {
+		// System.out.println("adfgufiguidf");
+		// ball.setX(ball.getX() + 1);
+		// } work on getting the ball to move when mouse is pulled back
 	}
 
 	@Override
@@ -207,8 +223,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		System.out.println("ballX");
 		try {
 			Robot robot = new Robot();
-			// robot.
-			// work on mouse and ball
+
 		} catch (AWTException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
