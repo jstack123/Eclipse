@@ -30,8 +30,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage basketballImg;
 	Ball ball = new Ball(100, 200, 25, 25);
 
-	ScoreZone zones = new ScoreZone(700, 375, 50, 50, 1);
-	ScoreZone zones2 = new ScoreZone(675, 500, 50, 50, 2);
+	ScoreZone[] zone = new ScoreZone[12];
+	// work on making arrays for zones
+
 	ScoreZone zones2b = new ScoreZone(675, 250, 50, 50, 2);
 	ScoreZone zones3 = new ScoreZone(535, 375, 50, 50, 3);
 	ScoreZone zones3LeftC = new ScoreZone(900, 25, 50, 50, 3);
@@ -46,6 +47,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public GamePanel()
 
 	{
+		zone[0] = new ScoreZone(700, 375, 50, 50, 1);
+		zone[1] = new ScoreZone(675, 500, 50, 50, 2);
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
 		startAndEndMenu = new Font("Arial", Font.ITALIC, 50);
@@ -78,7 +81,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	public void paintComponent(Graphics g) {
 		// object.draw(g);
-		System.out.println(currentState);
+
 		if (currentState == MENU_STATE) {
 			drawMenuState(g);
 		} else if (currentState == GAME_STATE) {
@@ -117,8 +120,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.drawImage(courtBackgroundImg, 0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT, null);
 		// g.drawImage(basketballImg, 550, 400, 25, 25, null);
 		ball.draw(g);
-		zones.draw(g);
-		zones2.draw(g);
+		// zones.draw(g);
+		// zones2.draw(g);
 		zones2b.draw(g);
 		zones3.draw(g);
 		zones3LeftC.draw(g);
@@ -143,34 +146,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+		// zones.checkIfInZone(e.getX(), e.getY()); work on making arrays for
+		// the zones
+		// zones2.checkIfInZone(e.getX(), e.getY());
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
 
 	}
 
@@ -183,7 +185,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
 		}
@@ -202,17 +204,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
 
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		// if (ball.getX() > ball.getY() - 100) {
-		// System.out.println("adfgufiguidf");
-		// ball.setX(ball.getX() + 1);
-		// } work on getting the ball to move when mouse is pulled back
+		if (ball.getX() > ball.getY() - 100) {
+			ball.setX(ball.getX() + 1);
+		}
+		System.out.println(e.getX());
 	}
 
 	@Override
@@ -220,7 +221,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		// TODO Auto-generated method stub
 		ball.setX(e.getX());
 		ball.setY(e.getY());
-		System.out.println("ballX");
+
 		try {
 			Robot robot = new Robot();
 
