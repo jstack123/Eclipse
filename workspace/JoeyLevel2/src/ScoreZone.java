@@ -30,6 +30,7 @@ public class ScoreZone extends BBGameObject {
 		if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
 			System.out.println("mouse");
 			return true;
+
 		} else {
 			return false;
 		}
