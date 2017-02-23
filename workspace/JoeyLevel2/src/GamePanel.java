@@ -30,6 +30,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage basketballImg;
 	Ball ball = new Ball(100, 200, 25, 25);
 	boolean inZone = false;
+	Hoop hoop = new Hoop(700, 700, 75, 75);
 
 	ScoreZone[] zone = new ScoreZone[12];
 	// work on making arrays for zones
@@ -98,7 +99,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void updateGameState() {
-
+		ball.update();
 	}
 
 	public void updateEndState() {
@@ -124,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		for (int i = 0; i < zone.length; i++) {
 			zone[i].draw(g);
 		}
-
+		hoop.draw(g);
 	}
 
 	public void drawEndState(Graphics g) {
@@ -147,21 +148,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 		for (int j = 0; j < zone.length; j++) {
 			if (zone[j].checkIfInZone(e.getX(), e.getY()) == true) {
-				System.out.println("zoneistrue");
+				// System.out.println("zoneistrue");
 				inZone = true;
 				break;
 			} else {
 				inZone = false;
-				System.out.println("zoneisfalse");
+				// System.out.println("zoneisfalse");
 			}
 		}
 
+		if (inZone == true) {
+			// ball.setX(ball.getX() + 1);
+			ball = new Ball(e.getX(), e.getY(), 25, 25);
+			ball.setup(e.getX(), e.getY());
+			System.out.println("zoneistrue");
+		}
+		// work on getting the sensitivity lower for the ball and work on
+		// creating the hoop
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		ball.launch(e.getX(), e.getY());
 	}
 
 	@Override
@@ -214,19 +223,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		// ball.setX(ball.getX() + 1);
 		// }
 		// System.out.println(e.getX());
-		if (inZone == true) {
-			ball.setX(ball.getX() + 1);
-			System.out.println("dfasdfsdf");
-		}
 
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		ball.setX(e.getX());
-		ball.setY(e.getY());
-
+		if (ball.isLaunching == false) {
+			ball.setX(e.getX());
+			ball.setY(e.getY());
+		}
 		try {
 			Robot robot = new Robot();
 
