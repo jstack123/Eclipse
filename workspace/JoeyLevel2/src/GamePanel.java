@@ -26,11 +26,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	int currentState = MENU_STATE;
 	Font titleFont;
 	Font startAndEndMenu;
+	Font scoreFont;
 	public static BufferedImage courtBackgroundImg;
 	public static BufferedImage basketballImg;
 	Ball ball = new Ball(100, 200, 25, 25);
 	boolean inZone = false;
-	Hoop hoop = new Hoop(700, 700, 75, 75);
+	Hoop hoop = new Hoop(875, 370, 60, 60);
+	int score = 0;
+	int currentZoneScore = 0;
+	int mouseX;
+	int mouseY;
 
 	ScoreZone[] zone = new ScoreZone[12];
 	// work on making arrays for zones
@@ -54,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
 		startAndEndMenu = new Font("Arial", Font.ITALIC, 50);
+		scoreFont = new Font("Times New Roman", Font.HANGING_BASELINE, 40);
 		try {
 			courtBackgroundImg = ImageIO.read(this.getClass().getResourceAsStream("basketballCourt.png"));
 			basketballImg = ImageIO.read(this.getClass().getResourceAsStream("basketball.png"));
@@ -94,12 +100,32 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		}
 	}
 
+	public void checkPosition() {
+		double distance = Math.sqrt((ball.getX() - hoop.getX()) * (ball.getX() - hoop.getX())
+				+ (ball.getY() - hoop.getY()) * (ball.getY() - hoop.getY()));
+		System.out.println(distance);
+		if (distance < 25) {
+			score += currentZoneScore;
+			ball.setX(mouseX);
+			ball.setY(mouseY);
+			ball.isLaunching = false;
+		}
+	}
+
 	public void updateMenuState() {
 
 	}
 
 	public void updateGameState() {
 		ball.update();
+		if (ball.isLaunching) {
+			checkPosition();
+		}
+		if ((ball.getX() > 1000 || ball.getX() < 0) || (ball.getY() > 800 || ball.getY() < 0)) {
+			ball.setX(mouseX);
+			ball.setY(mouseY);
+			ball.isLaunching = false;
+		}
 	}
 
 	public void updateEndState() {
@@ -126,6 +152,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			zone[i].draw(g);
 		}
 		hoop.draw(g);
+		g.setColor(Color.BLACK);
+		g.setFont(scoreFont);
+		g.drawString("Score: " + score, 90, 150);
 	}
 
 	public void drawEndState(Graphics g) {
@@ -134,6 +163,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
 		g.drawString("GAME OVER!!!", 225, 200);
+		g.setFont(startAndEndMenu);
+		g.drawString("You scored a total of " + score + " points", 100, 400);
+		// next time work on moving the x-value and the y-value to more in the
+		// middle of the
+		// hoop to make the shot more accurate and try to make the program have
+		// a timer
 	}
 
 	@Override
@@ -150,6 +185,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (zone[j].checkIfInZone(e.getX(), e.getY()) == true) {
 				// System.out.println("zoneistrue");
 				inZone = true;
+				currentZoneScore = zone[j].pointValue;
 				break;
 			} else {
 				inZone = false;
@@ -163,8 +199,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			ball.setup(e.getX(), e.getY());
 			System.out.println("zoneistrue");
 		}
-		// work on getting the sensitivity lower for the ball and work on
-		// creating the hoop
+		ball.setX(e.getX() - ball.getWidth() / 2);
+		ball.setY(e.getY() - ball.getHeight());
 	}
 
 	@Override
@@ -229,9 +265,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
+		mouseX = e.getX();
+		mouseY = e.getY();
 		if (ball.isLaunching == false) {
-			ball.setX(e.getX());
-			ball.setY(e.getY());
+			ball.setX(e.getX() - ball.getWidth() / 2);
+			ball.setY(e.getY() - ball.getHeight());
 		}
 		try {
 			Robot robot = new Robot();
