@@ -36,6 +36,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	int currentZoneScore = 0;
 	int mouseX;
 	int mouseY;
+	long totalTime = 30000;
+	long remainingTime = totalTime;
+	long deltaTime = 0;
+	long startTime = 0;
+	int countdownTimer = 30;
 
 	ScoreZone[] zone = new ScoreZone[12];
 	// work on making arrays for zones
@@ -101,8 +106,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void checkPosition() {
-		double distance = Math.sqrt((ball.getX() - hoop.getX()) * (ball.getX() - hoop.getX())
-				+ (ball.getY() - hoop.getY()) * (ball.getY() - hoop.getY()));
+		int newBallX = ball.getX() + (ball.getWidth() / 2);
+		int newBallY = ball.getY() + (ball.getHeight() / 2);
+		int newHoopX = hoop.getX() + (hoop.getWidth() / 2);
+		int newHoopY = hoop.getY() + (hoop.getHeight() / 2);
+		double distance = Math
+				.sqrt((newBallX - newHoopX) * (newBallX - newHoopX) + (newBallY - newHoopY) * (newBallY - newHoopY));
 		System.out.println(distance);
 		if (distance < 25) {
 			score += currentZoneScore;
@@ -117,6 +126,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void updateGameState() {
+		if (startTime == 0) {
+			startTime = System.currentTimeMillis();
+
+		}
+		deltaTime = System.currentTimeMillis() - startTime;
+		startTime = System.currentTimeMillis();
+		remainingTime -= deltaTime;
+		System.out.println(remainingTime);
 		ball.update();
 		if (ball.isLaunching) {
 			checkPosition();
@@ -126,6 +143,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			ball.setY(mouseY);
 			ball.isLaunching = false;
 		}
+		if (remainingTime < 15 && remainingTime > -15) {
+			System.out.println("TIME LIMIT REACHED!!!!!");
+			currentState = END_STATE;
+		}
+
 	}
 
 	public void updateEndState() {
@@ -155,6 +177,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.setColor(Color.BLACK);
 		g.setFont(scoreFont);
 		g.drawString("Score: " + score, 90, 150);
+		g.drawString("Timer: " + remainingTime / 1000, 375, 150);
 	}
 
 	public void drawEndState(Graphics g) {
@@ -165,10 +188,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.drawString("GAME OVER!!!", 225, 200);
 		g.setFont(startAndEndMenu);
 		g.drawString("You scored a total of " + score + " points", 100, 400);
-		// next time work on moving the x-value and the y-value to more in the
-		// middle of the
-		// hoop to make the shot more accurate and try to make the program have
-		// a timer
+		g.drawString("Press BACKSPACE to restart.", 225, 600);
+
 	}
 
 	@Override
@@ -233,16 +254,22 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
+			remainingTime = totalTime;
+			score = 0;
 		}
 		if (currentState > END_STATE) {
 			currentState = MENU_STATE;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 			currentState = MENU_STATE;
+
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			JOptionPane.showMessageDialog(null,
-					"Hello! Welcome to Joey's Basketball Game! In this game you goal is to score as many points as you can in 30 seconds. To shoot, drag your mouse back, let it go, and let it fly. The further you drag your mouse, the more power on the shoot. At the end, see how many points you get! Good luck! Have fun!");
+					"Hello! Welcome to Joey's Basketball Game! In this game you goal is to score as many points as you can in 30 seconds. \n"
+							+ "To shoot, drag your mouse back, let it go, and let it fly. The further you drag your mouse, the more power on the shoot. \n"
+							+ " But if you shoot too hard or too soft, your shot will not count and you will not get the point(s) \n"
+							+ "At the end, see how many points you get! Good luck! Have fun!");
 		}
 	}
 
