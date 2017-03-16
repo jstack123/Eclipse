@@ -51,15 +51,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		zone[0] = new ScoreZone(700, 375, 50, 50, 1);
 		zone[1] = new ScoreZone(675, 500, 50, 50, 2);
 		zone[2] = new ScoreZone(675, 250, 50, 50, 2);
-		zone[3] = new ScoreZone(535, 375, 50, 50, 3);
+		zone[3] = new ScoreZone(535, 375, 50, 50, 2);
 		zone[4] = new ScoreZone(900, 25, 50, 50, 3);
 		zone[5] = new ScoreZone(900, 725, 50, 50, 3);
 		zone[6] = new ScoreZone(625, 130, 50, 50, 3);
 		zone[7] = new ScoreZone(625, 620, 50, 50, 3);
 		zone[8] = new ScoreZone(380, 375, 50, 50, 4);
 		zone[9] = new ScoreZone(240, 375, 50, 50, 5);
-		zone[10] = new ScoreZone(300, 25, 50, 50, 5);
-		zone[11] = new ScoreZone(300, 725, 50, 50, 5);
+		zone[10] = new ScoreZone(300, 25, 50, 50, 8);
+		zone[11] = new ScoreZone(300, 725, 50, 50, 8);
 
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
@@ -128,7 +128,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void updateGameState() {
 		if (startTime == 0) {
 			startTime = System.currentTimeMillis();
-
+			System.out.println("start time");
 		}
 		deltaTime = System.currentTimeMillis() - startTime;
 		startTime = System.currentTimeMillis();
@@ -253,15 +253,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		// TODO Auto-generated method stub
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
 			currentState++;
-			remainingTime = totalTime;
-			score = 0;
+
 		}
 		if (currentState > END_STATE) {
 			currentState = MENU_STATE;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-			currentState = MENU_STATE;
+			if (currentState == END_STATE) {
+
+				startTime = 0;
+				currentState = GAME_STATE;
+				remainingTime = totalTime;
+				score = 0;
+			}
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {

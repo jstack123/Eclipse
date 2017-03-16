@@ -81,6 +81,9 @@ public class Ball extends BBGameObject {
 			velocity = 0;
 
 		}
+		if (finishX > startX) {
+			velocity = -velocity;
+		}
 		System.out.println(velocity);
 		System.out.println(angle);
 		isLaunching = true;
