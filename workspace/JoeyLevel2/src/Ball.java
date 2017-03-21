@@ -72,7 +72,7 @@ public class Ball extends BBGameObject {
 		int Ydif = startY - finishY;
 		// System.out.println(x);
 		// System.out.println(y);
-
+	   this.isLaunching=true;
 		velocity = Math.sqrt((Xdif * Xdif) + (Ydif * Ydif)) * 0.25;
 		if (Xdif != 0) {
 			angle = Math.atan((double) Ydif / (double) Xdif);

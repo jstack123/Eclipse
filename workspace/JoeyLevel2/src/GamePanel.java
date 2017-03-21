@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont;
 	Font startAndEndMenu;
 	Font scoreFont;
+	Font scoreOfZonesFont;
 	public static BufferedImage courtBackgroundImg;
 	public static BufferedImage basketballImg;
 	Ball ball = new Ball(100, 200, 25, 25);
@@ -41,6 +42,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	long deltaTime = 0;
 	long startTime = 0;
 	int countdownTimer = 30;
+	int ballXLimit = 890;
+	
 
 	ScoreZone[] zone = new ScoreZone[12];
 	// work on making arrays for zones
@@ -56,7 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		zone[5] = new ScoreZone(900, 725, 50, 50, 3);
 		zone[6] = new ScoreZone(625, 130, 50, 50, 3);
 		zone[7] = new ScoreZone(625, 620, 50, 50, 3);
-		zone[8] = new ScoreZone(380, 375, 50, 50, 4);
+		zone[8] = new ScoreZone(380, 375, 50, 50, 3);
 		zone[9] = new ScoreZone(240, 375, 50, 50, 5);
 		zone[10] = new ScoreZone(300, 25, 50, 50, 8);
 		zone[11] = new ScoreZone(300, 725, 50, 50, 8);
@@ -65,6 +68,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		titleFont = new Font("Times New Roman", Font.BOLD, 75);
 		startAndEndMenu = new Font("Arial", Font.ITALIC, 50);
 		scoreFont = new Font("Times New Roman", Font.HANGING_BASELINE, 40);
+		scoreOfZonesFont = new Font("Times New Roman", Font.ROMAN_BASELINE, 25);
 		try {
 			courtBackgroundImg = ImageIO.read(this.getClass().getResourceAsStream("basketballCourt.png"));
 			basketballImg = ImageIO.read(this.getClass().getResourceAsStream("basketball.png"));
@@ -117,8 +121,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			score += currentZoneScore;
 			ball.setX(mouseX);
 			ball.setY(mouseY);
-			ball.isLaunching = false;
+			ball.isLaunching = false;	
 		}
+	 
 	}
 
 	public void updateMenuState() {
@@ -185,10 +190,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.fillRect(0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT);
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
-		g.drawString("GAME OVER!!!", 225, 200);
+		g.drawString("GAME OVER!!!", 225, 100);
 		g.setFont(startAndEndMenu);
-		g.drawString("You scored a total of " + score + " points", 100, 400);
-		g.drawString("Press BACKSPACE to restart.", 225, 600);
+		g.drawString("You scored a total of " + score + " points", 100, 175);
+		g.drawString("Press BACKSPACE to restart.", 225, 700);
+		g.setFont(scoreOfZonesFont);
+		g.drawString("You made " + " shots from Scorezone 1.", 200, 250);
+		for (int z = 0; z < zone.length; z++) {
+			//zone[z].
+		}
+		       
+		       
+		 
+		g.drawString("You made this many shots from this corner.", 150, 225);
 
 	}
 
@@ -213,10 +227,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				// System.out.println("zoneisfalse");
 			}
 		}
-
-		if (inZone == true) {
+	
+		if (inZone == true && !ball.isLaunching) {
 			// ball.setX(ball.getX() + 1);
 			ball = new Ball(e.getX(), e.getY(), 25, 25);
+			ball.isLaunching=false;
+			//work on making the mouse not work when clicking, when the ball is in the air
 			ball.setup(e.getX(), e.getY());
 			System.out.println("zoneistrue");
 		}
