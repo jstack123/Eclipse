@@ -42,7 +42,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	long deltaTime = 0;
 	long startTime = 0;
 	int countdownTimer = 30;
-	int ballXLimit = 890;
+	int ballXLimit = 930;
+	boolean ballActive = false;
 	
 
 	ScoreZone[] zone = new ScoreZone[12];
@@ -138,7 +139,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		deltaTime = System.currentTimeMillis() - startTime;
 		startTime = System.currentTimeMillis();
 		remainingTime -= deltaTime;
-		System.out.println(remainingTime);
+		//System.out.println(remainingTime);
 		ball.update();
 		if (ball.isLaunching) {
 			checkPosition();
@@ -173,8 +174,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawImage(courtBackgroundImg, 0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT, null);
-		// g.drawImage(basketballImg, 550, 400, 25, 25, null);
+		//g.drawImage(basketballImg, 550, 400, 25, 25, null);
 		ball.draw(g);
+		if(ball.getX() > ballXLimit) {
+		System.out.println("ball gone");
+			//ballActive=false;
+		}
 		for (int i = 0; i < zone.length; i++) {
 			zone[i].draw(g);
 		}
@@ -215,7 +220,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		if(ball.getX() < ballXLimit) {
 		for (int j = 0; j < zone.length; j++) {
 			if (zone[j].checkIfInZone(e.getX(), e.getY()) == true) {
 				// System.out.println("zoneistrue");
@@ -238,12 +243,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		}
 		ball.setX(e.getX() - ball.getWidth() / 2);
 		ball.setY(e.getY() - ball.getHeight());
+		} 
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+	//	if(!ballActive) {
 		ball.launch(e.getX(), e.getY());
+		//ballActive = true;
+		//}
 	}
 
 	@Override
