@@ -176,8 +176,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		g.drawImage(courtBackgroundImg, 0, 0, BasketballGame.WIDTH, BasketballGame.HEIGHT, null);
 		//g.drawImage(basketballImg, 550, 400, 25, 25, null);
 		ball.draw(g);
+		
 		if(ball.getX() > ballXLimit) {
 		System.out.println("ball gone");
+		ball.isLaunching=false;
 			//ballActive=false;
 		}
 		for (int i = 0; i < zone.length; i++) {
@@ -254,6 +256,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		ball.launch(e.getX(), e.getY());
 		//ballActive = true;
 		//}
+		if(ball.getX() < ballXLimit) {
+			System.out.println("ball is in front of the limit");
+		}
+		if(ball.getX() > ballXLimit) {
+			ball.launch(ball.getX(), ball.getY());
+		}
 	}
 
 	@Override
@@ -308,7 +316,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
